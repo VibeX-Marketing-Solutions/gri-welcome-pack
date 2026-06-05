@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-gri-blue: #1b75bb;
+  --color-gri-blue-deep: #0e4c8a;
+  --color-gri-blue-dark: #093566;
+  --color-gri-green: #8bc53f;
+  --color-gri-green-deep: #6fa92e;
+  --color-navy: #1c2539;
+  --color-ink: #2b3445;
+  --color-slate: #5d666f;
+  --color-mist: #f7f9fb;
+  --color-cloud: #eef3f8;
+
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* ---- Page model: A4 portrait ---- */
+:root {
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --page-pad-x: 16mm;
+  --page-pad-y: 14mm;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #525659; /* viewer gutter when previewing in browser */
+  font-family: var(--font-body);
+  color: var(--color-navy);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  min-height: var(--page-h);
+  height: var(--page-h);
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  margin: 10mm 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content padding wrapper inside a standard page */
+.page-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding: var(--page-pad-y) var(--page-pad-x);
+  min-height: 0;
+}
+
+/* Full-bleed pages (cover, dividers) handle their own padding */
+.page-bleed .page-body {
+  padding: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff;
+  }
+  #root {
+    display: block;
+  }
+  .page {
+    box-shadow: none;
+    margin: 0;
+    /* Each .page maps to exactly one physical sheet */
+    break-after: page;
+    page-break-after: always;
+  }
+  .page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}

@@ -2,6 +2,10 @@ node_modules/
 dist/
 .vite/
 *.log
+_review/
 _pdf_pages/
 _wp_pages/
 _wp_text.txt
+
+# Large source reference PDFs (kept on disk, not tracked)
+reference/

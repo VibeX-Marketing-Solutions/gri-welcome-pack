@@ -14,6 +14,7 @@ const IMAGES = {
   "divider-settling": ["https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80", "settling"],
   "divider-arrival": ["https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80", "arrival"],
   "divider-money": ["https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80", "money"],
+  "divider-daily": ["https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600&q=80", "daily"],
   "divider-work": ["https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=80", "work"],
   "divider-family": ["https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80", "family"],
 };

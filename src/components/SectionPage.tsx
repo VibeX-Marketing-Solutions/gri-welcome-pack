@@ -141,20 +141,11 @@ function NotesPanel({ notes }: { notes: string[] }) {
   );
 }
 
-// ── NZ map placeholder, fills ───────────────────────────────────────────────
+// ── NZ map, fills ───────────────────────────────────────────────────────────
 function MapBody() {
   return (
-    <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-dashed border-gri-blue/30 bg-gradient-to-br from-mist to-cloud">
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(27,117,187,0.05)_25%,transparent_25%,transparent_50%,rgba(27,117,187,0.05)_50%,rgba(27,117,187,0.05)_75%,transparent_75%)] bg-[length:16px_16px]" />
-      <div className="relative flex flex-col items-center gap-2 text-center">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" className="text-gri-blue/50">
-          <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M9 4v14M15 6v14" stroke="currentColor" strokeWidth="1.5" />
-        </svg>
-        <span className="text-[10px] font-semibold uppercase tracking-wide text-gri-blue/60">
-          New Zealand map artwork
-        </span>
-      </div>
+    <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-mist to-cloud p-3">
+      <img src="/img/nz-map.png" alt="Map of New Zealand" className="h-full w-full object-contain" />
     </div>
   );
 }

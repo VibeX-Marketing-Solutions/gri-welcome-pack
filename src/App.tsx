@@ -4,8 +4,11 @@ import { LetterPage } from "./components/LetterPage";
 import { TOC, type TocEntry } from "./components/TOC";
 import { SectionDivider } from "./components/SectionDivider";
 import { SectionPage } from "./components/SectionPage";
+import { DestinationPage } from "./components/DestinationShowcase";
 import { SupportPage, FollowPage } from "./components/Closing";
 import { GROUPS, SECTIONS, CLOSING } from "./content";
+
+const DESTS_PER_PAGE = 3;
 
 // Build the document as an ordered list of physical pages, assigning sequential
 // page numbers and recording where each numbered section lands (for the TOC).
@@ -34,6 +37,32 @@ function buildDocument() {
       const g = GROUPS[section.group];
       add(() => <SectionDivider key={`div-${g.key}`} group={g} />);
     }
+    // Places to Visit → a multi-page magazine-style showcase
+    if (section.variant === "destinations" && section.destinations) {
+      const dests = section.destinations;
+      let chunkIdx = 0;
+      for (let start = 0; start < dests.length; start += DESTS_PER_PAGE) {
+        const chunk = dests.slice(start, start + DESTS_PER_PAGE);
+        const first = start === 0;
+        const heroBottom = chunkIdx % 2 === 1;
+        add((n) => {
+          if (first) tocEntries.push({ num: section.num, title: section.title, page: n });
+          return (
+            <DestinationPage
+              key={`dest-${start}`}
+              section={section}
+              destinations={chunk}
+              heroBottom={heroBottom}
+              showHeader={first}
+              pageNo={n}
+            />
+          );
+        });
+        chunkIdx += 1;
+      }
+      continue;
+    }
+
     add((n) => {
       tocEntries.push({ num: section.num, title: section.title, page: n });
       return <SectionPage key={`s-${section.num}`} section={section} pageNo={n} />;

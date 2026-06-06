@@ -1,6 +1,7 @@
 import { Page } from "./Page";
 import { Highlight } from "./Highlight";
 import { SectionHeader } from "./SectionPage";
+import { ServiceIcon } from "./ServiceIcon";
 import { CLOSING, DIRECTORS } from "../content";
 
 export function SupportPage({ pageNo }: { pageNo: number }) {
@@ -13,32 +14,51 @@ export function SupportPage({ pageNo }: { pageNo: number }) {
         {CLOSING.supportIntro}
       </p>
 
-      <div className="grid grid-cols-2 gap-3.5">
-        {CLOSING.services.map((s) => (
-          <div
-            key={s}
-            className="flex items-center gap-3 rounded-xl border border-cloud bg-mist p-3.5"
-          >
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gri-green/15">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-gri-green-deep">
-                <path d="M5 12l5 5 9-11" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="text-[10px] font-semibold text-navy">{s}</span>
-          </div>
-        ))}
+      {/* Hays-style services panel: deep-blue, icon-led 3×2 grid */}
+      <div className="relative flex-1 overflow-hidden rounded-3xl bg-gradient-to-br from-gri-blue-deep via-gri-blue-deep to-gri-blue-dark p-7 text-white">
+        <div className="mb-5 flex items-center gap-3">
+          <span className="h-[3px] w-9 rounded-full bg-gri-green" />
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-gri-green">
+            What we help you with
+          </span>
+        </div>
+        <div className="grid grid-cols-3 gap-x-6 gap-y-6">
+          {CLOSING.services.map((s) => (
+            <div key={s.title} className="flex flex-col">
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                <ServiceIcon name={s.icon} className="text-gri-green" />
+              </div>
+              <h4 className="mb-1.5 font-display text-[12.5px] font-bold leading-tight text-white">
+                {s.title}
+              </h4>
+              <p className="text-[8.5px] leading-snug text-blue-100/80">{s.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Director contact block */}
-      <div className="mt-6 rounded-2xl bg-gradient-to-br from-gri-blue to-gri-blue-deep p-6 text-white">
-        <h3 className="mb-4 font-display text-[15px] font-bold">GRI New Zealand — Contact Us</h3>
+      {/* Director contact band */}
+      <div className="mt-5 rounded-2xl border border-cloud bg-mist p-5">
+        <div className="mb-3.5 flex items-center gap-3">
+          <span className="h-[3px] w-9 rounded-full bg-gri-green" />
+          <h3 className="font-display text-[13px] font-bold text-navy">
+            GRI New Zealand — Talk to us
+          </h3>
+        </div>
         <div className="grid grid-cols-2 gap-5">
           {DIRECTORS.map((d) => (
-            <div key={d.email}>
-              <p className="font-display text-[13px] font-bold">{d.name}</p>
-              <p className="text-[9px] text-white/75">{d.role}</p>
-              <p className="mt-1.5 text-[10px] font-semibold text-gri-green">{d.phone}</p>
-              <p className="text-[9.5px] text-white/90">{d.email}</p>
+            <div key={d.email} className="flex items-center gap-3.5">
+              <img
+                src={d.photo}
+                alt={d.name}
+                className="h-[17mm] w-[17mm] shrink-0 rounded-2xl object-cover object-top ring-2 ring-white"
+              />
+              <div className="min-w-0">
+                <p className="font-display text-[12.5px] font-bold text-navy">{d.name}</p>
+                <p className="text-[8.5px] text-slate">{d.role}</p>
+                <p className="mt-1 text-[10px] font-semibold text-gri-blue">{d.phone}</p>
+                <p className="truncate text-[9px] text-gri-blue">{d.email}</p>
+              </div>
             </div>
           ))}
         </div>

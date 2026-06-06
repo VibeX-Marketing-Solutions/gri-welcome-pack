@@ -180,7 +180,8 @@ children.push(new Paragraph({ spacing: { before: 80, after: 60 }, children: [new
 for (const f of LETTER.foundations) children.push(bullet(f));
 children.push(new Paragraph({ spacing: { before: 120, after: 120 }, alignment: AlignmentType.CENTER, shading: { type: ShadingType.SOLID, color: "F7F9FB", fill: "F7F9FB" }, children: [new TextRun({ text: `“${LETTER.quote}”`, italics: true, color: B, size: 24, font: FONT })] }));
 for (const d of DIRECTORS) {
-  children.push(new Paragraph({ spacing: { before: 120 }, border: { top: { style: BorderStyle.SINGLE, size: 12, color: G, space: 4 } }, children: [new TextRun({ text: d.name, bold: true, color: NAVY, size: 22, font: FONT })] }));
+  const photo = await img(d.photo, 64, 64);
+  children.push(new Paragraph({ spacing: { before: 160, after: 20 }, border: { top: { style: BorderStyle.SINGLE, size: 12, color: G, space: 4 } }, children: photo ? [photo, new TextRun({ text: `   ${d.name}`, bold: true, color: NAVY, size: 22, font: FONT })] : [new TextRun({ text: d.name, bold: true, color: NAVY, size: 22, font: FONT })] }));
   children.push(new Paragraph({ children: [new TextRun({ text: `${d.role}, ${d.org}`, color: SLATE, size: 18, font: FONT })] }));
   children.push(new Paragraph({ children: [new TextRun({ text: `${d.phone}  |  ${d.email}`, color: B, size: 18, bold: true, font: FONT })] }));
 }
@@ -201,10 +202,16 @@ for (const section of SECTIONS) {
 children.push(eyebrow("Settlement Guide"));
 children.push(h1(`${CLOSING.supportNum}.  ${CLOSING.supportTitle}`));
 children.push(body(CLOSING.supportIntro));
-for (const s of CLOSING.services) children.push(bullet(s));
+for (const s of CLOSING.services) {
+  children.push(new Paragraph({ bullet: { level: 0 }, spacing: { after: 80 }, children: [
+    new TextRun({ text: `${s.title} — `, bold: true, color: NAVY, size: 21, font: FONT }),
+    new TextRun({ text: s.desc, color: INK, size: 21, font: FONT }),
+  ] }));
+}
 children.push(new Paragraph({ spacing: { before: 160, after: 60 }, shading: { type: ShadingType.SOLID, color: B, fill: B }, children: [new TextRun({ text: "  GRI New Zealand — Contact Us  ", bold: true, color: "FFFFFF", size: 22, font: FONT })] }));
 for (const d of DIRECTORS) {
-  children.push(new Paragraph({ spacing: { before: 80 }, children: [new TextRun({ text: d.name, bold: true, color: NAVY, size: 21, font: FONT }), new TextRun({ text: `  —  ${d.role}`, color: SLATE, size: 18, font: FONT })] }));
+  const photo = await img(d.photo, 56, 56);
+  children.push(new Paragraph({ spacing: { before: 120 }, children: photo ? [photo, new TextRun({ text: `   ${d.name}`, bold: true, color: NAVY, size: 21, font: FONT }), new TextRun({ text: `  —  ${d.role}`, color: SLATE, size: 18, font: FONT })] : [new TextRun({ text: d.name, bold: true, color: NAVY, size: 21, font: FONT }), new TextRun({ text: `  —  ${d.role}`, color: SLATE, size: 18, font: FONT })] }));
   children.push(new Paragraph({ children: [new TextRun({ text: `${d.phone}  |  ${d.email}`, color: B, size: 18, bold: true, font: FONT })] }));
 }
 

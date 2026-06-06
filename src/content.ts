@@ -19,6 +19,10 @@ export type Destination = {
   name: string;
   region?: string;
   blurb: string;
+  /** [hero, supporting] photos for the showcase band. */
+  images?: string[];
+  /** Activity / feature chips. */
+  highlights?: string[];
 };
 
 export type Section = {
@@ -29,6 +33,8 @@ export type Section = {
   resources?: Resource[];
   notes?: string[];
   destinations?: Destination[];
+  /** Full-bleed hero photo for single-resource feature pages (Hays split). */
+  hero?: string;
   /** Renders compact cards (no image slot) for link-dense sections. */
   compact?: boolean;
   /** Special full-page renderers. */
@@ -100,6 +106,7 @@ export const DIRECTORS = [
     org: "GRI Education New Zealand",
     phone: "+64 21 0246 7780",
     email: "prasad.perera@grieducation.com",
+    photo: "/img/team/prasad.jpg",
   },
   {
     name: "Mr. Nagendra Chauhan",
@@ -107,6 +114,7 @@ export const DIRECTORS = [
     org: "GRI Education New Zealand",
     phone: "+64 21 0272 0229",
     email: "nagendra.chauhan@grieducation.com",
+    photo: "/img/team/nagendra.jpg",
   },
 ];
 
@@ -144,7 +152,7 @@ export const SECTIONS: Section[] = [
         name: "Glow Trips",
         note: "Exclusive student fares & flexible booking",
         link: "https://glowtravel.tours/",
-        image: { label: "Glow Trips travel photo" },
+        image: { src: "/img/photos/feat-flights.jpg", label: "Glow Trips travel photo" },
         qr: "/img/qr/glowtrips.png",
         preferred: true,
       },
@@ -161,7 +169,7 @@ export const SECTIONS: Section[] = [
         name: "NZ Traveller Declaration",
         note: "Official government declaration portal",
         link: "https://www.travellerdeclaration.govt.nz/completing-your-declaration/",
-        image: { label: "NZTD / border arrival photo" },
+        image: { src: "/img/photos/feat-airport.jpg", label: "NZTD / border arrival photo" },
         qr: "/img/qr/nztd.png",
       },
     ],
@@ -176,7 +184,7 @@ export const SECTIONS: Section[] = [
         name: "AANS International",
         note: "GRI partner — airport welcome & transfers",
         contacts: ["admin@aansinternational.com", "+64 21 141 9478 (WhatsApp)"],
-        image: { label: "Airport pickup / transfer photo" },
+        image: { src: "/img/photos/feat-pickup.jpg", label: "Airport pickup / transfer photo" },
         preferred: true,
       },
     ],
@@ -195,7 +203,7 @@ export const SECTIONS: Section[] = [
         name: "SL Hub",
         note: "Community information & services for Sri Lankans in NZ",
         link: "https://www.slhub.co.nz",
-        image: { label: "SL Hub community photo" },
+        image: { src: "/img/photos/feat-community.jpg", label: "SL Hub community photo" },
         qr: "/img/qr/slhub.png",
       },
     ],
@@ -216,6 +224,7 @@ export const SECTIONS: Section[] = [
       },
       {
         name: "Trade Me Property",
+        logo: "/img/partners/trademe.png",
         note: "New Zealand's largest rental marketplace",
         link: "https://www.trademe.co.nz/a/property",
         image: { label: "Trade Me rental listing photo" },
@@ -223,6 +232,7 @@ export const SECTIONS: Section[] = [
       },
       {
         name: "Airbnb",
+        logo: "/img/partners/airbnb.png",
         note: "Short-stay rooms & whole homes",
         link: "https://www.airbnb.co.nz",
         image: { label: "Airbnb stay photo" },
@@ -230,6 +240,7 @@ export const SECTIONS: Section[] = [
       },
       {
         name: "Booking.com",
+        logo: "/img/partners/booking.png",
         note: "Book a motel or apartment before you arrive",
         link: "https://www.booking.com",
         image: { label: "Motel / apartment photo" },
@@ -247,7 +258,7 @@ export const SECTIONS: Section[] = [
         name: "Tiran Mendis — TNC Financial Services",
         note: "GRI partner — student insurance advice",
         contacts: ["+64 27 317 0000", "tmendis@tncfs.co.nz"],
-        image: { label: "Insurance advisor photo" },
+        image: { src: "/img/photos/feat-insurance.jpg", label: "Insurance advisor photo" },
         preferred: true,
       },
     ],
@@ -284,6 +295,7 @@ export const SECTIONS: Section[] = [
     resources: [
       {
         name: "Inland Revenue (IRD)",
+        logo: "/img/partners/ird.png",
         note: "Apply online — free",
         link: "https://www.ird.govt.nz",
         qr: "/img/qr/ird.png",
@@ -302,11 +314,15 @@ export const SECTIONS: Section[] = [
       "A New Zealand bank account lets you manage your money conveniently, avoid currency-exchange fees, receive payments, and use online banking. It also helps you build a local credit history and access emergency funds. Most major banks let you start your application before you arrive.",
     compact: true,
     resources: [
-      { name: "ASB Bank", link: "https://www.asb.co.nz", qr: "/img/qr/asb.png" },
+      { name: "ASB Bank",
+        logo: "/img/partners/asb.png", link: "https://www.asb.co.nz", qr: "/img/qr/asb.png" },
       { name: "BNZ", link: "https://www.bnz.co.nz", qr: "/img/qr/bnz.png" },
-      { name: "Westpac", link: "https://www.westpac.co.nz", qr: "/img/qr/westpac.png" },
-      { name: "ANZ", link: "https://www.anz.co.nz", qr: "/img/qr/anz.png" },
-      { name: "Kiwibank", link: "https://www.kiwibank.co.nz", qr: "/img/qr/kiwibank.png" },
+      { name: "Westpac",
+        logo: "/img/partners/westpac.png", link: "https://www.westpac.co.nz", qr: "/img/qr/westpac.png" },
+      { name: "ANZ",
+        logo: "/img/partners/anz.png", link: "https://www.anz.co.nz", qr: "/img/qr/anz.png" },
+      { name: "Kiwibank",
+        logo: "/img/partners/kiwibank.png", link: "https://www.kiwibank.co.nz", qr: "/img/qr/kiwibank.png" },
     ],
   },
   {
@@ -317,6 +333,7 @@ export const SECTIONS: Section[] = [
     resources: [
       {
         name: "Blue Dot Rentals",
+        logo: "/img/partners/bluedot.png",
         note: "Temporary car rental",
         link: "https://bluedotrentals.co.nz",
         image: { label: "Rental car photo" },
@@ -324,6 +341,7 @@ export const SECTIONS: Section[] = [
       },
       {
         name: "Trade Me Motors",
+        logo: "/img/partners/trademe.png",
         note: "Buy used cars from across NZ",
         link: "https://www.trademe.co.nz/a/motors",
         image: { label: "Used car listing photo" },
@@ -346,9 +364,10 @@ export const SECTIONS: Section[] = [
     resources: [
       {
         name: "Guardian Finance",
+        logo: "/img/partners/guardian.png",
         note: "GRI partner — flexible finance for newcomers",
         link: "https://guardianfinance.co.nz/",
-        image: { label: "Guardian Finance photo" },
+        image: { src: "/img/photos/feat-finance.jpg", label: "Guardian Finance photo" },
         qr: "/img/qr/guardian.png",
         preferred: true,
       },
@@ -495,7 +514,7 @@ export const SECTIONS: Section[] = [
         name: "Find a School",
         note: "Education Counts — official school directory",
         link: "https://www.educationcounts.govt.nz/find-school",
-        image: { label: "NZ school / classroom photo" },
+        image: { src: "/img/photos/feat-school.jpg", label: "NZ school / classroom photo" },
         qr: "/img/qr/findschool.png",
       },
     ],
@@ -523,7 +542,7 @@ export const SECTIONS: Section[] = [
         name: "Citizens Advice Bureau",
         note: "Free, confidential guidance & support",
         link: "https://www.cab.org.nz/",
-        image: { label: "CAB / community support photo" },
+        image: { src: "/img/photos/feat-cab.jpg", label: "CAB / community support photo" },
         qr: "/img/qr/cab.png",
       },
     ],
@@ -547,15 +566,78 @@ export const SECTIONS: Section[] = [
     intro:
       "New Zealand rewards exploration. From adrenaline capitals to geothermal wonders and golden beaches, here are some of the most memorable places to enjoy with family.",
     destinations: [
-      { name: "Queenstown", region: "South Island", blurb: "The adventure capital — jet boating, bungy and, in the cooler months, world-class skiing across four ski areas." },
-      { name: "Taupō", region: "North Island", blurb: "Bungy, parasailing, bike trails, thermal spas, paddle boarding, whitewater rafting and lake jet-boat rides." },
-      { name: "Rotorua", region: "North Island", blurb: "Renowned for geothermal activity, age-old forests, and pristine lakes and rivers found only here." },
-      { name: "Waiheke Island", region: "Auckland", blurb: "Famous for wine, beaches and elegant stays — a short ferry from downtown Auckland to an island of wine and sun." },
-      { name: "Auckland Zoo", region: "Auckland", blurb: "Home to 135 species and over 1,000 animals — NZ's largest collection of native and exotic wildlife." },
-      { name: "Coromandel Peninsula", region: "North Island", blurb: "Rainforest interior and 400km of white-sand beaches — rustic, unspoiled and a walker's paradise." },
-      { name: "Hawke's Bay", region: "North Island", blurb: "Wine and vineyards, Art Deco architecture, Cape Kidnappers, fruit orchards, cycling trails and Te Mata Peak." },
-      { name: "Mt Ruapehu", region: "North Island", blurb: "The largest ski area in NZ plus volcanic summer adventures — a premier alpine destination." },
-      { name: "Abel Tasman", region: "South Island", blurb: "Forest-fringed golden beaches, calm azure waters and granite headlands, with coastal and inland tracks." },
+      {
+        name: "Queenstown",
+        region: "South Island",
+        images: ["/img/photos/dest-queenstown.jpg", "/img/photos/dest-queenstown-2.jpg"],
+        blurb:
+          "New Zealand's adventure capital, set on the shores of Lake Wakatipu beneath the Remarkables. By day it's jet boating, bungy and hiking; in winter it becomes a world-class resort with four ski areas, buzzing bars and great dining.",
+        highlights: ["Jet boating & bungy", "Four ski areas", "Lake Wakatipu", "Bars & dining"],
+      },
+      {
+        name: "Taupō",
+        region: "North Island",
+        images: ["/img/photos/dest-taupo.jpg", "/img/photos/dest-taupo-2.jpg"],
+        blurb:
+          "Built around the country's largest lake and the thundering Huka Falls. Adrenaline meets relaxation — skydiving, parasailing and whitewater rafting alongside thermal spas, bike trails and lakeside jet-boat rides.",
+        highlights: ["Huka Falls", "Skydiving", "Thermal spas", "Lake Taupō"],
+      },
+      {
+        name: "Rotorua",
+        region: "North Island",
+        images: ["/img/photos/dest-rotorua.jpg", "/img/photos/dest-rotorua-2.jpg"],
+        blurb:
+          "A geothermal wonderland of bubbling mud, geysers and steaming lakes, wrapped in age-old forests. The heartland of Māori culture, with hāngī, haka and stories found nowhere else.",
+        highlights: ["Geysers & mud pools", "Māori culture", "Redwoods forest", "Lakes & rivers"],
+      },
+      {
+        name: "Waiheke Island",
+        region: "Auckland",
+        images: ["/img/photos/dest-waiheke.jpg", "/img/photos/dest-waiheke-2.jpg"],
+        blurb:
+          "A short ferry from downtown Auckland delivers you to an island of vineyards, golden beaches and boutique brunches. Sip world-class wine, wander the coastal tracks, and soak up the sun.",
+        highlights: ["Wine & vineyards", "Beaches", "Ferry from Auckland", "Coastal walks"],
+      },
+      {
+        name: "Auckland Zoo",
+        region: "Auckland",
+        images: ["/img/photos/dest-aucklandzoo.jpg", "/img/photos/dest-aucklandzoo-2.jpg"],
+        blurb:
+          "Home to 135 species and more than 1,000 animals, Auckland Zoo is New Zealand's largest collection of native and exotic wildlife — a wonderful family day exploring habitats from the Aussie bush to the African savannah.",
+        highlights: ["1,000+ animals", "135 species", "Family day out", "Native & exotic"],
+      },
+      {
+        name: "Coromandel Peninsula",
+        region: "North Island",
+        images: ["/img/photos/dest-coromandel.jpg", "/img/photos/dest-coromandel-2.jpg"],
+        blurb:
+          "A rugged, unspoiled coast with a rainforest interior and more than 400km of dazzling white-sand beaches. Dig your own spa pool at Hot Water Beach, walk to Cathedral Cove, and unwind.",
+        highlights: ["White-sand beaches", "Hot Water Beach", "Cathedral Cove", "Native rainforest"],
+      },
+      {
+        name: "Hawke's Bay",
+        region: "North Island",
+        images: ["/img/photos/dest-hawkesbay.jpg", "/img/photos/dest-hawkesbay-2.jpg"],
+        blurb:
+          "Sun-drenched wine country famed for the Art Deco architecture of Napier, sweeping vineyards and fruit orchards. Cycle the trails, climb Te Mata Peak, and watch the gannets at Cape Kidnappers.",
+        highlights: ["Wine & vineyards", "Art Deco Napier", "Te Mata Peak", "Cycling trails"],
+      },
+      {
+        name: "Mt Ruapehu",
+        region: "North Island",
+        images: ["/img/photos/dest-ruapehu.jpg", "/img/photos/dest-ruapehu-2.jpg"],
+        blurb:
+          "An active volcano and the largest ski area in the North Island, ringed by historic and natural attractions. Ski and board in winter, then hike the famous Tongariro Alpine Crossing in summer.",
+        highlights: ["Largest NI ski area", "Active volcano", "Tongariro Crossing", "Alpine scenery"],
+      },
+      {
+        name: "Abel Tasman",
+        region: "South Island",
+        images: ["/img/photos/dest-abeltasman.jpg", "/img/photos/dest-abeltasman-2.jpg"],
+        blurb:
+          "Forest-fringed golden beaches, calm azure waters and sculpted granite headlands. Kayak the coastline or walk the Abel Tasman Coast Track — one of NZ's Great Walks — in a mild, year-round climate.",
+        highlights: ["Golden beaches", "Sea kayaking", "Coast Track", "Granite headlands"],
+      },
     ],
   },
   {
@@ -575,12 +657,36 @@ export const CLOSING = {
   supportIntro:
     "Our commitment continues long after you land. Whenever you feel uncertain, reach out — you are part of the GRI family, and we are here with honest guidance, professional advice, and long-term planning support.",
   services: [
-    "Career guidance",
-    "Guidance for your next visa process",
-    "Guidance for the PR (residency) process",
-    "Help finding opportunities in New Zealand",
-    "Licensed immigration advisor services",
-    "Guidance to start your own business in New Zealand",
+    {
+      icon: "compass",
+      title: "Career Guidance",
+      desc: "One-on-one advice to plan your studies, work and long-term career path in New Zealand.",
+    },
+    {
+      icon: "visa",
+      title: "Next Visa Process",
+      desc: "Step-by-step support to prepare and lodge your next student or work visa with confidence.",
+    },
+    {
+      icon: "residency",
+      title: "PR & Residency",
+      desc: "Long-term planning toward residency, with honest advice on your pathway and timing.",
+    },
+    {
+      icon: "opportunity",
+      title: "Finding Opportunities",
+      desc: "Connections and direction to find part-time, graduate and professional roles.",
+    },
+    {
+      icon: "advisor",
+      title: "Licensed Immigration Advisors",
+      desc: "Access to qualified, licensed immigration advisors you can trust.",
+    },
+    {
+      icon: "business",
+      title: "Start Your Own Business",
+      desc: "Support to explore self-employment and set up your own venture in New Zealand.",
+    },
   ],
   followTitle: "Visit & Follow Us",
   followHighlight: "Follow",

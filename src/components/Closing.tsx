@@ -2,7 +2,7 @@ import { Page } from "./Page";
 import { Highlight } from "./Highlight";
 import { SectionHeader } from "./SectionPage";
 import { ServiceIcon } from "./ServiceIcon";
-import { CLOSING, DIRECTORS } from "../content";
+import { CLOSING, DIRECTORS, META } from "../content";
 
 export function SupportPage({ pageNo }: { pageNo: number }) {
   return (
@@ -107,6 +107,18 @@ export function FollowPage({ pageNo }: { pageNo: number }) {
           <p className="mt-1.5 max-w-[110mm] text-[10px] text-white/85">
             You are now part of the GRI family — scan to connect with fellow students and our team in New Zealand.
           </p>
+        </div>
+      </div>
+
+      {/* Colored GRI logo sign-off */}
+      <div className="mt-auto flex flex-col items-center pb-2 pt-8">
+        <img src="/img/logo.svg" alt="GRI Education" className="h-[18mm] w-auto" />
+        <div className="mt-3 flex items-center gap-2.5">
+          <span className="h-[3px] w-7 rounded-full bg-gri-green" />
+          <span className="font-display text-[11px] font-semibold italic text-gri-blue">
+            {META.tagline}
+          </span>
+          <span className="h-[3px] w-7 rounded-full bg-gri-green" />
         </div>
       </div>
     </Page>

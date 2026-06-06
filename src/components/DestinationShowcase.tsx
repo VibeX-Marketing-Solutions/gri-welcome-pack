@@ -9,8 +9,12 @@ function DestinationTile({ d, hero }: { d: Destination; hero?: boolean }) {
   return (
     <div className="relative h-full w-full overflow-hidden rounded-2xl bg-navy">
       {img && <img src={img} alt={d.name} className="absolute inset-0 h-full w-full object-cover" />}
-      {/* subtle bottom-up gradient for legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/30 to-transparent" />
+      {/* bottom-up gradient for legibility (stronger on small tiles for full text) */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t to-transparent ${
+          hero ? "from-navy/95 via-navy/30" : "from-navy via-navy/65"
+        }`}
+      />
       {hero && <div className="absolute inset-0 bg-gradient-to-r from-navy/40 to-transparent" />}
 
       <div className={`absolute inset-x-0 bottom-0 text-white ${hero ? "p-7" : "p-5"}`}>
@@ -28,8 +32,8 @@ function DestinationTile({ d, hero }: { d: Destination; hero?: boolean }) {
           {d.name}
         </h3>
         <p
-          className={`mt-1.5 leading-snug text-white/85 ${
-            hero ? "max-w-[125mm] text-[10px]" : "line-clamp-2 text-[8px]"
+          className={`mt-1.5 leading-snug text-white/90 ${
+            hero ? "max-w-[125mm] text-[10px]" : "text-[8.5px]"
           }`}
         >
           {d.blurb}

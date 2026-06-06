@@ -144,7 +144,7 @@ function NotesPanel({ notes }: { notes: string[] }) {
 // ── NZ map, fills ───────────────────────────────────────────────────────────
 function MapBody() {
   return (
-    <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-mist to-cloud p-3">
+    <div className="flex min-h-0 flex-1 items-center justify-center">
       <img src="/img/nz-map.png" alt="Map of New Zealand" className="h-full w-full object-contain" />
     </div>
   );
